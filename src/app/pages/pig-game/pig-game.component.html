@@ -1,0 +1,55 @@
+<main>
+    <section class="player player--0" [ngClass]="{'player--active': players.player_1.active_player, 'player--winner': players.player_1.winner}">
+      <h2 class="name" id="name--0">Jugador 1</h2>
+      <p class="score" id="score--0">{{players.player_1.final_score}}</p>
+      <div class="current">
+        <p class="current-label">Actual</p>
+        <p class="current-score" id="current--0">{{players.player_1.current_score}}</p>
+      </div>
+    </section>
+    <section class="player player--1" [ngClass]="{'player--active': players.player_2.active_player, 'player--winner': players.player_2.winner}">
+      <h2 class="name" id="name--1">Jugador 2</h2>
+      <p class="score" id="score--1">{{players.player_2.final_score}}</p>
+      <div class="current">
+        <p class="current-label">Actual</p>
+        <p class="current-score" id="current--1">{{players.player_2.current_score}}</p>
+      </div>
+    </section>
+
+    <img *ngIf="game_started" [src]="img" alt="Playing dice" class="dice" />
+    <button class="my-btn btn--new" (click)="newGame()">🔄 Nuevo juego</button>
+    <button class="my-btn btn--roll"
+        [disabled]="game_over" 
+        (click)="throwDice()">🎲 Tirar dado</button>
+    <button class="my-btn btn--hold"
+        [disabled]="game_over" 
+        (click)="endTurn()">📥 Finalizar turno</button>
+    <button class="my-btn btn--intr" 
+    data-bs-toggle="modal" data-bs-target="#exampleModal">ℹ Instrucciones</button>
+  </main>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered">
+<div class="modal-content">
+    <div class="modal-header">
+    <h1 class="modal-title fs-5" id="exampleModalLabel">¿Cómo se juega?</h1>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+        <ul>
+            <li><h3>El juego consiste en tirar el dado e ir acumulando puntos.</h3></li>
+            <br>
+            <li><h3>Durante su turno, cada jugador puede tirar el dado las veces que quiera (mientras obtengas un valor diferente a 1 😬)</h3></li>
+            <br>
+            <li><h3>Cada valor obtenido se irá sumando en el ACTUAL marcador. Pero si dicho valor es 1, se perderán los puntos acumulados y será el turno del siguiente jugador</h3></li>
+            <br>
+            <li><h3>Al presionar FINALIZAR TURNO, los puntos acumulados en el ACTUAL marcador serán sumados al MARCADOR FINAL y cederá el turno al rival</h3></li>
+            <br>
+            <li><h3>El primer jugador en igualar o superar 100 puntos ganará 🏆</h3></li>
+        </ul>
+    </div>
+</div>
+</div>
+</div>
