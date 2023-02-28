@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-const MAX_SCORE = 20;
+const MAX_SCORE = 50;
 
 @Component({
   selector: 'app-pig-game',
